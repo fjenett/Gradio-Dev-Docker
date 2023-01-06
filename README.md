@@ -45,3 +45,4 @@ docker stop gradio-dev
 
 - https://gradio.app/creating_a_new_component/
 - https://github.com/gradio-app/gradio
+- https://www.youtube.com/watch?v=kWGK95gaRZE
