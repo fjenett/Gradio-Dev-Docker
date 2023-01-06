@@ -67,4 +67,4 @@ EXPOSE 3000
 
 # CMD ["tail", "-f", "/dev/null"]
 
-CMD ["/bin/bash", "run_dev.sh"]
+CMD ["/bin/bash", "start-dev-server.sh"]
