@@ -15,7 +15,7 @@ docker buildx build . -t gradio-dev
 
 Run the container:
 ```commandline
- docker run --rm --name gradio-dev -p 8080:7860 -p 8081:3000 -v $(pwd)/app.py:/gradio-dev/gradio/app.py -v $(pwd)/src/ui/:/gradio-dev/gradio/ui/ gradio-dev
+ docker run --rm --name gradio-dev -d -p 8080:7860 -p 8081:3000 -v $(pwd)/app.py:/gradio-dev/gradio/app.py -v $(pwd)/src/ui/:/gradio-dev/gradio/ui/ gradio-dev
 ```
 
 **Currently only the hot reloading of the backend (Python side) works. The frontend side does not.**

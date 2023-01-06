@@ -3186,6 +3186,105 @@ class ColorPicker(Changeable, Submittable, IOComponent, SimpleSerializable):
             return str(y)
 
 
+@document("change", "submit", "style")
+class MyComponent(Changeable, Submittable, IOComponent, SimpleSerializable):
+    """
+    Creates a color picker for user to select a color as string input.
+    Preprocessing: passes selected color value as a {str} into the function.
+    Postprocessing: expects a {str} returned from function and sets color picker value to it.
+    Examples-format: a {str} with a hexadecimal representation of a color, e.g. "#ff0000" for red.
+    Demos: color_picker, color_generator
+    """
+
+    def __init__(
+        self,
+        value: str | Callable | None = None,
+        *,
+        label: str | None = None,
+        every: float | None = None,
+        show_label: bool = True,
+        interactive: bool | None = None,
+        visible: bool = True,
+        elem_id: str | None = None,
+        **kwargs,
+    ):
+        """
+        Parameters:
+            value: default text to provide in color picker. If callable, the function will be called whenever the app loads to set the initial value of the component.
+            label: component name in interface.
+            every: If `value` is a callable, run the function 'every' number of seconds while the client connection is open. Has no effect otherwise. Queue must be enabled. The event can be accessed (e.g. to cancel it) via this component's .load_event attribute.
+            show_label: if True, will display label.
+            interactive: if True, will be rendered as an editable color picker; if False, editing will be disabled. If not provided, this is inferred based on whether the component is used as an input or output.
+            visible: If False, component will be hidden.
+            elem_id: An optional string that is assigned as the id of this component in the HTML DOM. Can be used for targeting CSS styles.
+        """
+        self.cleared_value = "#000000"
+        self.test_input = value
+        IOComponent.__init__(
+            self,
+            label=label,
+            every=every,
+            show_label=show_label,
+            interactive=interactive,
+            visible=visible,
+            elem_id=elem_id,
+            value=value,
+            **kwargs,
+        )
+
+    def get_config(self):
+        return {
+            "value": self.value,
+            **IOComponent.get_config(self),
+        }
+
+    @staticmethod
+    def update(
+        value: str | Literal[_Keywords.NO_VALUE] | None = _Keywords.NO_VALUE,
+        label: str | None = None,
+        show_label: bool | None = None,
+        visible: bool | None = None,
+        interactive: bool | None = None,
+    ):
+        updated_config = {
+            "value": value,
+            "label": label,
+            "show_label": show_label,
+            "visible": visible,
+            "__type__": "update",
+        }
+        return IOComponent.add_interactive_to_config(updated_config, interactive)
+
+    def preprocess(self, x: str | None) -> str | None:
+        """
+        Any preprocessing needed to be performed on function input.
+        Parameters:
+            x: text
+        Returns:
+            text
+        """
+        if x is None:
+            return None
+        else:
+            return str(x)
+
+    def generate_sample(self) -> str:
+        return "#000000"
+
+    def postprocess(self, y: str | None) -> str | None:
+        """
+        Any postprocessing needed to be performed on function output.
+        Parameters:
+            y: text
+        Returns:
+            text
+        """
+        if y is None:
+            return None
+        else:
+            return str(y)
+
+
 ############################
 # Only Output Components
 ############################

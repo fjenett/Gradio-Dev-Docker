@@ -47,6 +47,10 @@ from gradio.components import (
     UploadButton,
     Variable,
     Video,
+
+    # custom component
+    MyComponent,
+
     component,
 )
 from gradio.exceptions import Error
