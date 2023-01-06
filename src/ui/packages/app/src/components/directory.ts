@@ -39,5 +39,5 @@ export const component_map = {
 	uploadbutton: () => import("./UploadButton"),
 	video: () => import("./Video"),
 	// custom components
-	myComponent: () => import("./MyComponent")
+	mycomponent: () => import("./MyComponent")
 };
