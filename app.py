@@ -1,11 +1,11 @@
 import gradio as gr
 
 app = gr.Interface(
-    title='Hello World ... Markus',
+    title='Hello World ...',
     fn=lambda x: f'Hello {x}',
     inputs=[
         gr.Textbox(),
-        gr.MyComponent()
+        # gr.MyComponent()
     ],
     outputs=gr.Textbox()
 )
