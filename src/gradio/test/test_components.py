@@ -1,5 +1,5 @@
 """
-Tests for all of the components defined in components.py. Tests are divided into two types:
+Tests for all of the custom-components defined in custom-components.py. Tests are divided into two types:
 1. test_component_functions() are unit tests that check essential functions of a component, the functions that are checked are documented in the docstring.
 2. test_in_interface() are functional tests that check a component's functionalities inside an Interface. Please do not use Interface.launch() in this file, as it slow downs the tests.
 """
@@ -1295,7 +1295,7 @@ class TestVideo:
             assert processing_utils.video_is_playable(str(full_path_to_output))
 
     @patch("pathlib.Path.exists", MagicMock(return_value=False))
-    @patch("gradio.components.FFmpeg")
+    @patch("gradio.custom-components.FFmpeg")
     def test_video_preprocessing_flips_video_for_webcam(self, mock_ffmpeg):
         # Ensures that the cached temp video file is not used so that ffmpeg is called for each test
         x_video = deepcopy(media_data.BASE64_VIDEO)
@@ -1409,7 +1409,7 @@ class TestTimeseries:
 
 
 class TestNames:
-    # This test ensures that `components.get_component_instance()` works correctly when instantiating from components
+    # This test ensures that `custom-components.get_component_instance()` works correctly when instantiating from custom-components
     def test_no_duplicate_uncased_names(self):
         subclasses = gr.components.Component.__subclasses__()
         unique_subclasses_uncased = set([s.__name__.lower() for s in subclasses])
@@ -1952,11 +1952,11 @@ def test_as_example_returns_file_basename(component):
     assert component.as_example(None) == ""
 
 
-@patch("gradio.components.IOComponent.as_example")
-@patch("gradio.components.Image.as_example")
-@patch("gradio.components.File.as_example")
-@patch("gradio.components.Dataframe.as_example")
-@patch("gradio.components.Model3D.as_example")
+@patch("gradio.custom-components.IOComponent.as_example")
+@patch("gradio.custom-components.Image.as_example")
+@patch("gradio.custom-components.File.as_example")
+@patch("gradio.custom-components.Dataframe.as_example")
+@patch("gradio.custom-components.Model3D.as_example")
 def test_dataset_calls_as_example(*mocks):
     gr.Dataset(
         components=[gr.Dataframe(), gr.File(), gr.Image(), gr.Model3D(), gr.Textbox()],

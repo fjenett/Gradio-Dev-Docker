@@ -1,4 +1,4 @@
-"""Contains all of the components that can be used with Gradio Interface / Blocks.
+"""Contains all of the custom-components that can be used with Gradio Interface / Blocks.
 Along with the docs for each component, you can find the names of example demos that use
 each component. These demos are located in the `demo` directory."""
 
@@ -76,7 +76,7 @@ class _Keywords(Enum):
 
 class Component(Block):
     """
-    A base class for defining the methods that all gradio components should have.
+    A base class for defining the methods that all gradio custom-components should have.
     """
 
     def __str__(self):
@@ -120,7 +120,7 @@ class Component(Block):
         put_deprecated_params_in_box = False
         if "rounded" in kwargs:
             warnings.warn(
-                "'rounded' styling is no longer supported. To round adjacent components together, place them in a Column(variant='box')."
+                "'rounded' styling is no longer supported. To round adjacent custom-components together, place them in a Column(variant='box')."
             )
             if isinstance(kwargs["rounded"], list) or isinstance(
                 kwargs["rounded"], tuple
@@ -129,7 +129,7 @@ class Component(Block):
             kwargs.pop("rounded")
         if "margin" in kwargs:
             warnings.warn(
-                "'margin' styling is no longer supported. To place adjacent components together without margin, place them in a Column(variant='box')."
+                "'margin' styling is no longer supported. To place adjacent custom-components together without margin, place them in a Column(variant='box')."
             )
             if isinstance(kwargs["margin"], list) or isinstance(
                 kwargs["margin"], tuple
@@ -138,7 +138,7 @@ class Component(Block):
             kwargs.pop("margin")
         if "border" in kwargs:
             warnings.warn(
-                "'border' styling is no longer supported. To place adjacent components in a shared border, place them in a Column(variant='box')."
+                "'border' styling is no longer supported. To place adjacent custom-components in a shared border, place them in a Column(variant='box')."
             )
             kwargs.pop("border")
         if container is not None:
@@ -154,7 +154,7 @@ class Component(Block):
 
 class IOComponent(Component, Serializable):
     """
-    A base class for defining methods that all input/output components should have.
+    A base class for defining methods that all input/output custom-components should have.
     """
 
     def __init__(
@@ -1663,7 +1663,7 @@ class Image(
             inputs: List of inputs
             outputs: List of outputs
         """
-        # js: Optional frontend js method to run before running 'fn'. Input arguments for js method are values of 'inputs' and 'outputs', return should be a list of values for output components.
+        # js: Optional frontend js method to run before running 'fn'. Input arguments for js method are values of 'inputs' and 'outputs', return should be a list of values for output custom-components.
         if self.source != "webcam":
             raise ValueError("Image streaming only available if source is 'webcam'.")
         Streamable.stream(
@@ -2176,7 +2176,7 @@ class Audio(
             inputs: List of inputs
             outputs: List of outputs
         """
-        #             _js: Optional frontend js method to run before running 'fn'. Input arguments for js method are values of 'inputs' and 'outputs', return should be a list of values for output components.
+        #             _js: Optional frontend js method to run before running 'fn'. Input arguments for js method are values of 'inputs' and 'outputs', return should be a list of values for output custom-components.
         if self.source != "microphone":
             raise ValueError(
                 "Audio streaming only available if source is 'microphone'."
@@ -4939,9 +4939,9 @@ class Dataset(Clickable, Component):
     ):
         """
         Parameters:
-            components: Which component types to show in this dataset widget, can be passed in as a list of string names or Components instances. The following components are supported in a Dataset: Audio, Checkbox, CheckboxGroup, ColorPicker, Dataframe, Dropdown, File, HTML, Image, Markdown, Model3D, Number, Radio, Slider, Textbox, TimeSeries, Video
+            components: Which component types to show in this dataset widget, can be passed in as a list of string names or Components instances. The following custom-components are supported in a Dataset: Audio, Checkbox, CheckboxGroup, ColorPicker, Dataframe, Dropdown, File, HTML, Image, Markdown, Model3D, Number, Radio, Slider, Textbox, TimeSeries, Video
             samples: a nested list of samples. Each sublist within the outer list represents a data sample, and each element within the sublist represents an value for each component
-            headers: Column headers in the Dataset widget, should be the same len as components. If not provided, inferred from component labels
+            headers: Column headers in the Dataset widget, should be the same len as custom-components. If not provided, inferred from component labels
             type: 'values' if clicking on a sample should pass the value of the sample, or "index" if it should pass the index of the sample
             samples_per_page: how many examples to show per page.
             visible: If False, component will be hidden.
@@ -4953,7 +4953,7 @@ class Dataset(Clickable, Component):
         # Narrow type to IOComponent
         assert all(
             [isinstance(c, IOComponent) for c in self.components]
-        ), "All components in a `Dataset` must be subclasses of `IOComponent`"
+        ), "All custom-components in a `Dataset` must be subclasses of `IOComponent`"
         self.components = [c for c in self.components if isinstance(c, IOComponent)]
 
         self.samples = [[]] if samples is None else samples
@@ -4972,7 +4972,7 @@ class Dataset(Clickable, Component):
 
     def get_config(self):
         return {
-            "components": [component.get_block_name() for component in self.components],
+            "custom-components": [component.get_block_name() for component in self.components],
             "headers": self.headers,
             "samples": self.samples,
             "type": self.type,
