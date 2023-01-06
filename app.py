@@ -2,7 +2,7 @@ import gradio as gr
 
 app = gr.Interface(
     title='Hello World ...',
-    fn=lambda x: f'Hello {x}',
+    fn=lambda x, y: f'Hello {x} {y}',
     inputs=[
         gr.Textbox(),
         # gr.MyComponent()
