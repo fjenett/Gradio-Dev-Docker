@@ -5,7 +5,7 @@ app = gr.Interface(
     fn=lambda x, y: f'Hello {x} {y}',
     inputs=[
         gr.Textbox(),
-        # gr.MyComponent()
+        gr.MyComponent()
     ],
     outputs=gr.Textbox()
 )
