@@ -2,7 +2,8 @@
 
 A Docker based Gradio development environment.
 
-I'm giving this a try to speed up experiments that are part of a larger research project trying to bring AI into design education: [KITeGG / gestaltung.ai](https://gestaltung.ai).
+I'm giving this a try to speed up experiments that are part of a larger research project trying to bring AI into design 
+education: [KITeGG / gestaltung.ai](https://gestaltung.ai).
 
 ## Status
 
@@ -14,9 +15,11 @@ At the moment everything just started to work for the first time. See *usage* be
 
 ### Build container image
 
-Before you can get started you need to build the Docker image first. Since this is just setting up the environment you should only need to do this once after cloning or updating this repository.
+Before you can get started you need to build the Docker image first. Since this is just setting up the environment you 
+should only need to do this once after cloning or updating this repository.
 
-If you are unfamiliar with Docker, then have a speed read over their [getting started](https://docs.docker.com/get-started/). Also, obviously you need to [install Docker](https://docs.docker.com/get-docker/) on your machine.
+If you are unfamiliar with Docker, then have a speed read over their [getting started](https://docs.docker.com/get-started/). 
+Also, obviously you need to [install Docker](https://docs.docker.com/get-docker/) on your machine.
 
 Build the image:
 ```commandline
@@ -34,7 +37,8 @@ docker images
 
 Now start a container (an instance of your Docker image). This starts the dev environment.
 
-I've put the command into a shell script as it is quite large and easier to maintain in a file. Go have a look inside `./dev-scripts/run-docker-container.sh`.
+I've put the command into a shell script as it is quite large and easier to maintain in a file. Go have a look inside 
+`./dev-scripts/run-docker-container.sh`.
 
 Run the container:
 ```commandline
@@ -66,7 +70,8 @@ Hot-reloads for frontend (browser side) parts of a Gradio project.
 
 Based on `vite dev` running through `pnpm --filter dev`.
 
-Needs the backend dev server (above) to run. That means if the python side fails, then this will also fail to start up. Fix python server first.
+Needs the backend dev server (above) to run. That means if the python side fails, then this will also fail to start up. 
+Fix python server first.
 
 Changes to the Svelte or other files in `ui/` cause a rebuild and reload.   
 Note that these are **not reflected** in the 
@@ -105,7 +110,8 @@ src
                 `-- index.ts
 ```
 
-If you add, move or rename files you will need to update the run command (see start script) to map these files into the container.
+If you add, move or rename files you will need to update the run command (see start script) to map these files into the 
+container.
 
 More background information is available here:
 https://gradio.app/creating_a_new_component/
