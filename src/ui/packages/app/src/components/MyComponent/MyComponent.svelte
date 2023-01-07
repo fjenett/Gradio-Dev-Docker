@@ -1,30 +1,39 @@
+<svelte:options accessors={true} />
+
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
-	import { get_styles } from "@gradio/utils";
-	import { BlockTitle } from "@gradio/atoms";
+	import { MyComponent } from "@gradio/my-package";
+	import { Block } from "@gradio/atoms";
+	import StatusTracker from "../StatusTracker/StatusTracker.svelte";
+	import type { LoadingStatus } from "../StatusTracker/types";
 	import type { Styles } from "@gradio/utils";
 
-	export let value: string = "#000000";
+	export let label: string = "MyComponent";
+	export let elem_id: string = "";
+	export let visible: boolean = true;
+	export let value: string;
+	export let show_label: boolean;
+
 	export let style: Styles = {};
-	export let label: string;
-	export let disabled = false;
-	export let show_label: boolean = true;
 
-	$: value;
-	$: handle_change(value);
+	export let loading_status: LoadingStatus;
 
-	const dispatch = createEventDispatcher<{
-		change: string;
-		submit: undefined;
-	}>();
-
-	function handle_change(val: string) {
-		dispatch("change", val);
-	}
+	export let mode: "static" | "dynamic";
 </script>
 
-<!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="block">
-	<input type="color" class="gr-box-unrounded" bind:value {disabled} />
-	<BlockTitle {show_label}>{label}</BlockTitle>
-</label>
+<Block
+	{visible}
+	{elem_id}
+	disable={typeof style.container === "boolean" && !style.container}
+>
+	<StatusTracker {...loading_status} />
+
+	<MyComponent
+		{style}
+		bind:value
+		{label}
+		{show_label}
+		on:change
+		on:submit
+		disabled={mode === "static"}
+	/>
+</Block>

@@ -1,0 +1,38 @@
+{
+	"name": "@gradio/app",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test:browser": "pnpx playwright test test/ --config=../../playwright.config.js",
+		"test:browser:debug": "pnpx playwright test test/ --debug --config=../../playwright.config.js"
+	},
+	"dependencies": {
+		"@gradio/atoms": "workspace:^0.0.1",
+		"@gradio/audio": "workspace:^0.0.1",
+		"@gradio/button": "workspace:^0.0.1",
+		"@gradio/carousel": "workspace:^0.0.1",
+		"@gradio/chart": "workspace:^0.0.1",
+		"@gradio/chatbot": "workspace:^0.0.1",
+		"@gradio/file": "workspace:^0.0.1",
+		"@gradio/form": "workspace:^0.0.1",
+		"@gradio/highlighted-text": "workspace:^0.0.1",
+		"@gradio/html": "workspace:^0.0.1",
+		"@gradio/image": "workspace:^0.0.1",
+		"@gradio/json": "workspace:^0.0.1",
+		"@gradio/label": "workspace:^0.0.1",
+		"@gradio/markdown": "workspace:^0.0.1",
+		"@gradio/table": "workspace:^0.0.1",
+		"@gradio/tabs": "workspace:^0.0.1",
+		"@gradio/theme": "workspace:^0.0.1",
+		"@gradio/upload": "workspace:^0.0.1",
+		"@gradio/video": "workspace:^0.0.1",
+		"@gradio/model3D": "workspace:^0.0.1",
+		"@gradio/plot": "workspace:^0.0.1",
+		"mime-types": "^2.1.34",
+		"svelte-i18n": "^3.3.13",
+		"@gradio/my-package": "workspace:^0.0.1"
+	}
+}
