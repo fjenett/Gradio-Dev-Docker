@@ -41,7 +41,17 @@ Run the container:
  ./dev-scripts/run-docker-container.sh
 ```
 
-Stop (and auto remove) a running container:
+See it running:
+```commandline
+docker ps
+```
+
+Checking the log of the container. I keep this open to see that changes to the files actually trigger a rebuild/reload with the dev servers:
+```commandline
+docker logs -f gradio-dev
+```
+
+Stop a running container. This will auto-remove it (see start script):
 ```commandline
 docker stop gradio-dev
 ```
