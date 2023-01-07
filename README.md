@@ -34,11 +34,11 @@ docker images
 
 Now start a container (an instance of your Docker image). This starts the dev environment.
 
-I've put the command into a shell script as it is quite large and easier to maintain in a file. Go have a look inside `./dev-scripts/run-container.sh`.
+I've put the command into a shell script as it is quite large and easier to maintain in a file. Go have a look inside `./dev-scripts/run-docker-container.sh`.
 
 Run the container:
 ```commandline
- ./dev-scripts/run-container.sh
+ ./dev-scripts/run-docker-container.sh
 ```
 
 Stop (and auto remove) a running container:
@@ -48,7 +48,7 @@ docker stop gradio-dev
 
 ### Component development
 
-Inside `src/` are template files to start with. These are mapped into the running container (see `./dev-scripts/run-container.sh`). You can edit them in place and they are triggering a rebuild/reload inside the container.
+Inside `src/` are template files to start with. These are mapped into the running container (see `./dev-scripts/run-docker-container.sh`). You can edit them in place and they are triggering a rebuild/reload inside the container.
 
 If you add / rename files you will need to update the run command (see start script) to map these files into the container.
 
