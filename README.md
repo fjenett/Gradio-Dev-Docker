@@ -52,15 +52,15 @@ Run the container:
  ./dev-scripts/stop-docker-container.sh
 ```
 
-The frontend now runs [here](http://localhost:3000), and the [backend](http://localhost:7860) here.
+The frontend now runs [here](http://localhost:3000), and the backend [here](http://localhost:7860).
 
-#### Backend (dev) server
+#### Backend (dev) server:
 
 Called *backend* because it hot-reloads based on the Python side of things, that is the *backend* (server side) of a Gradio project.
 
 Watches `app.py` and the `gradio/` directory.
 
-#### Frontend (dev) server
+#### Frontend (dev) server:
 
 Hot-reloads for frontend (browser side) parts of a Gradio project.
 
@@ -68,11 +68,16 @@ Based on `vite dev` running through `pnpm --filter dev`.
 
 Needs the backend dev server (above) to run. That means if the python side fails, then this will also fail to start up. Fix python server first.
 
-Changes to the Svelte or other files in `ui/` cause a rebuild and reload. Note that these are **not reflected** in the interface served through the backend server until you restart (stop-start) the container.
+Changes to the Svelte or other files in `ui/` cause a rebuild and reload.   
+Note that these are **not reflected** in the 
+interface served through the backend server until you restart (stop-start) the container. This is because the frontend 
+needs to be compiled into the backend before it starts up and that is (currently) not relfected in the hot-reloading process.
 
 ### Component development
 
-Inside `src/` are template files to start with. These are mapped into the running container (see `./dev-scripts/run-docker-container.sh`). You can edit them in place and they are triggering a rebuild/reload inside the container.
+Inside `src/` are template files to start with. These are mapped into the running container (see 
+`./dev-scripts/run-docker-container.sh`) and you can edit them in place. Any change should trigger a reload with one of 
+the two servers above (`gradio/` --> backend server, `ui/` --> frontend server).
 
 ```
 src
@@ -100,7 +105,7 @@ src
                 `-- index.ts
 ```
 
-If you add / rename files you will need to update the run command (see start script) to map these files into the container.
+If you add, move or rename files you will need to update the run command (see start script) to map these files into the container.
 
 More background information is available here:
 https://gradio.app/creating_a_new_component/
