@@ -39,22 +39,36 @@ I've put the command into a shell script as it is quite large and easier to main
 Run the container:
 ```commandline
  ./dev-scripts/run-docker-container.sh
+ 
+ # Optional: see it running
+ docker ps
+ 
+ # Optional: visit the running log of both servers
+ # I keep this open to see that changes to the files actually 
+ # trigger a rebuild/reload with the dev servers
+ docker logs -f gradio-dev
+ 
+ # Stop the server once done:
+ ./dev-scripts/stop-docker-container.sh
 ```
 
-See it running:
-```commandline
-docker ps
-```
+The frontend now runs [here](http://localhost:3000), and the [backend](http://localhost:7860) here.
 
-Checking the log of the container. I keep this open to see that changes to the files actually trigger a rebuild/reload with the dev servers:
-```commandline
-docker logs -f gradio-dev
-```
+#### Backend (dev) server
 
-Stop a running container. This will auto-remove it (see start script):
-```commandline
-docker stop gradio-dev
-```
+Called *backend* because it hot-reloads based on the Python side of things, that is the *backend* (server side) of a Gradio project.
+
+Watches `app.py` and the `gradio/` directory.
+
+#### Frontend (dev) server
+
+Hot-reloads for frontend (browser side) parts of a Gradio project.
+
+Based on `vite dev` running through `pnpm --filter dev`.
+
+Needs the backend dev server (above) to run. That means if the python side fails, then this will also fail to start up. Fix python server first.
+
+Changes to the Svelte or other files in `ui/` cause a rebuild and reload. Note that these are **not reflected** in the interface served through the backend server until you restart (stop-start) the container.
 
 ### Component development
 
