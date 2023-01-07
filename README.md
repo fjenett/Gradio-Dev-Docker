@@ -50,6 +50,32 @@ docker stop gradio-dev
 
 Inside `src/` are template files to start with. These are mapped into the running container (see `./dev-scripts/run-docker-container.sh`). You can edit them in place and they are triggering a rebuild/reload inside the container.
 
+```
+src
+|-- gradio
+|   |-- __init__.py
+|   |-- components.py
+|   `-- test
+|       `-- test_components.py
+`-- ui
+    `-- packages
+        |-- app
+        |   `-- src
+        |       |-- components
+        |       |   |-- MyComponent
+        |       |   |   |-- MyComponent.svelte
+        |       |   |   |-- MyComponent.test.ts
+        |       |   |   `-- index.ts
+        |       |   `-- directory.ts
+        |       `-- custom-components
+        `-- my-package
+            |-- README.md
+            |-- package.json
+            `-- src
+                |-- MyComponent.svelte
+                `-- index.ts
+```
+
 If you add / rename files you will need to update the run command (see start script) to map these files into the container.
 
 More background is available here:
