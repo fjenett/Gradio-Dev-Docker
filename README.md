@@ -25,7 +25,7 @@ Also, obviously you need to [install Docker](https://docs.docker.com/get-docker/
 
 Build the image:
 ```commandline
-docker buildx build . -t gradio-dev
+./dev-scripts/build-docker-image.sh
 ```
 
 You can have a look inside the `Dockerfile` if you are curious what is going on here. 
