@@ -102,11 +102,21 @@ src
 
 If you add / rename files you will need to update the run command (see start script) to map these files into the container.
 
-More background is available here:
+More background information is available here:
 https://gradio.app/creating_a_new_component/
+
+Also make sure to take the video tour by Abubakar Abid here:
+https://www.youtube.com/watch?v=kWGK95gaRZE
 
 ## Links
 
 - https://gradio.app/creating_a_new_component/
 - https://github.com/gradio-app/gradio
 - https://www.youtube.com/watch?v=kWGK95gaRZE
+
+## Footer
+
+- KITeGG is founded by [BMBF](https://www.bmbf.de/) and the states of RLP, NRW, BW, HE.
+  - https://twitter.com/gestaltungai
+  - https://gestaltung.ai/
+  - https://www.instagram.com/gestaltungai/
