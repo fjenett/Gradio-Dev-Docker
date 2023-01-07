@@ -67,4 +67,4 @@ EXPOSE 3000
 
 # CMD ["tail", "-f", "/dev/null"]
 
-CMD ["/bin/bash", "start-dev-server.sh"]
+CMD ["/bin/bash", "./dev-scripts/container-cmd.sh"]
