@@ -13,5 +13,4 @@ app = gr.Interface(
 app.launch(
     show_error=True, debug=True,
     server_name='0.0.0.0',
-    # server_port=7860,
 )
