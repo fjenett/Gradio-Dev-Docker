@@ -42,19 +42,24 @@ Build the image:
 
 You can have a look inside the `Dockerfile` if you are curious what is going on here. 
 
-Once the image has been built, it is listed here:
+Once the image has been built, it is listed here as `gradio-dev`:
 ```commandline
 docker images
 ```
 
-### Run a container
+The current version of Gradio is embedded into the Docker image. If you need to update it later, then just re-create 
+the image.
 
-Now start a container (an instance of your Docker image). This starts the dev environment.
+### Run container
+
+Now it is time to start a container (an instance of your Docker image). This builds a first version of the included demo component and 
+starts the development servers (see links further below). Once you see your interface in the frontend server you can start editing the included 
+example files with an editor of your choice (using PyCharm myself).
 
 I've put the command into a shell script as it is quite large and easier to maintain in a file. Go have a look inside 
 `./dev-scripts/run-docker-container.sh`.
 
-Run the container:
+Start (aka run) the container:
 ```commandline
  ./dev-scripts/run-docker-container.sh
  
@@ -82,7 +87,7 @@ Watches `app.py` and the `gradio/` directory.
 
 Hot-reloads for frontend (browser side) parts of a Gradio project.
 
-Based on `vite dev` running through `pnpm --filter dev`.
+Based on `vite dev` running through `pnpm ... dev`.
 
 Needs the backend dev server (above) to run. That means if the python side fails, then this will also fail to start up. 
 Fix python server first.
@@ -94,9 +99,10 @@ needs to be compiled into the backend before it starts up and that is (currently
 
 ### Component development
 
-Inside `src/` are template files to start with. These are mapped into the running container (see 
-`./dev-scripts/run-docker-container.sh`) and you can edit them in place. Any change should trigger a reload with one of 
-the two servers above (`gradio/` --> backend server, `ui/` --> frontend server).
+Inside `src/` are template files to start with. They are adapted from the `ColorPicker` component of Gradio. 
+These are mapped into the running container (see `./dev-scripts/run-docker-container.sh`) and you can edit them in place. 
+Any change should trigger a reload with one of the two servers above (`app.py` and `gradio/` --> backend server, 
+`ui/` --> frontend server).
 
 ```
 src
@@ -108,24 +114,26 @@ src
 `-- ui
     `-- packages
         |-- app
+        |   |-- package.json
         |   `-- src
-        |       |-- components
-        |       |   |-- MyComponent
-        |       |   |   |-- MyComponent.svelte
-        |       |   |   |-- MyComponent.test.ts
-        |       |   |   `-- index.ts
-        |       |   `-- directory.ts
-        |       `-- custom-components
+        |       `-- components
+        |           |-- MyComponent
+        |           |   |-- MyComponent.svelte
+        |           |   |-- MyComponent.test.ts
+        |           |   `-- index.ts
+        |           `-- directory.ts
         `-- my-package
             |-- README.md
             |-- package.json
             `-- src
                 |-- MyComponent.svelte
                 `-- index.ts
+
 ```
 
 If you add, move or rename files you will need to update the run command (see start script) to map these files into the 
-container.
+container. Also note that these files are interlinked ... so make sure to adapt them to your
+changes (search for occurrences of `mycomponent` in the example files).
 
 More background information is available here:
 https://gradio.app/creating_a_new_component/
