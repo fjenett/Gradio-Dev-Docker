@@ -15,6 +15,18 @@ At the moment everything just started to work for the first time. See *usage* be
 
 ## Usage
 
+These are the steps to get started:
+1) Download or fork-&-clone this repo to get a fresh copy
+2) Build the Docker image
+3) Run the docker image and open front- and backend dev servers in a browser
+4) Edit `app.py` to change the basic layout of your Gradio interface 
+   - Use backend server to check 
+5) Edit the `MyComponent.svelte` files inside `src/` to shape / alter your custom component 
+   - Use frontend server to check
+6) Repeat 4–5 and start / stop container until you're done and happy
+7) Deploy your custom files (`app.py` and contents of `src/`) with a fresh copy of the original Gradio repo
+   - (*Note to self: probably needs more instructions here*)
+
 ### Build container image
 
 Before you can get started you need to build the Docker image first. Since this is just setting up the environment you 
