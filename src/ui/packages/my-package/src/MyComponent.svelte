@@ -25,6 +25,6 @@
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="block">
-	<BlockTitle {show_label}>{label}</BlockTitle>
-	<input type="color" class="gr-box-unrounded" bind:value {disabled} />
+    <BlockTitle {show_label}>{label}</BlockTitle>
+    <input type="color" class="gr-box-unrounded" bind:value {disabled} />
 </label>

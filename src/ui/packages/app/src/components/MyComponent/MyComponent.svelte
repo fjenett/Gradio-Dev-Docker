@@ -7,7 +7,7 @@
 	import type { LoadingStatus } from "../StatusTracker/types";
 	import type { Styles } from "@gradio/utils";
 
-	export let label: string = "MyComponent";
+	export let label: string = "ColorPicker";
 	export let elem_id: string = "";
 	export let visible: boolean = true;
 	export let value: string;

@@ -6,7 +6,8 @@
 # Update locked package files,
 # wonder if this should happen in build_frontend.sh ..?
 cd ui
-pnpm i
+rm pnpm-lock.yaml   # delete lock file
+pnpm i              # re-generate lock file
 cd ..
 
 # Need to build the frontend once before starting dev servers
